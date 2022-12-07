@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GlobeRotate : MonoBehaviour {
-    private Sprite sprite;
-    //testing 2
+    [SerializeField] private Sprite _sprite;
     void Start()
     {
         
