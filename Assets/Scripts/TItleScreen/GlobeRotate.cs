@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GlobeRotate : MonoBehaviour {
     private Sprite sprite;
+    //testing
     void Start()
     {
         
