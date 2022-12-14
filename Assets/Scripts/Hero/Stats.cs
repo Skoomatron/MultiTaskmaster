@@ -3,21 +3,23 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Stats", menuName = "ScriptableObjects/Stats", order = 1)]
 public class Stats : ScriptableObject {
     [Header("Basic Stats")] 
-    [SerializeField] private int _level;
-    [SerializeField] private int _health;
-    [SerializeField] private int _attack;
-    [SerializeField] private int _defense;
-    [SerializeField] private int _wealth;
-    [SerializeField] private int _experience;
+    public int level;
+    public int health;
+    public int attack;
+    public int defense;
+    public int wealth;
+    public int experience;
     [Header("Accumulated Stats")]
-    [SerializeField] private float _accumulatedWealth;
-    [SerializeField] private float _timeAdventuring;
-    [SerializeField] private float _timeGoverning;
-    [SerializeField] private int _enemiesKilled;
-    [SerializeField] private int _itemsCollected;
-    [SerializeField] private float _timeResting;
-    [SerializeField] private float _timeCrafting;
-    [SerializeField] private int _regionsVisited;
-    [SerializeField] private int _townsVisited;
-    [SerializeField] private int _powerfulFoesDefeated;
+    public float accumulatedWealth;
+    public float timeAdventuring;
+    public float timeGoverning;
+    public int enemiesKilled;
+    public int itemsCollected;
+    public float timeResting;
+    public float timeCrafting;
+    public int regionsVisited;
+    public int townsVisited;
+    public int powerfulFoesDefeated;
+
+    public int healthValue { get => health; set => health = value; }
 }

@@ -16,7 +16,7 @@ public class Hero : MonoBehaviour
     public Sprite sprite;
     [SerializeField] private Path _path;
     [Header("Scriptables")]
-    [SerializeField] private Stats _stats;
+    public Stats stats;
     [SerializeField] private Inventory _inventory;
     [Header("Objectives")]
     [TextArea(10, 10)]
