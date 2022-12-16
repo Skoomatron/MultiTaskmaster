@@ -13,6 +13,7 @@ public class NewGameUI : MonoBehaviour {
     [SerializeField] private Image playerGarb;
     [SerializeField] private Image playerTrinket;
     [SerializeField] private Sprite noItem;
+    [SerializeField] private GameSaveManager gm;
 
 
     private int counter = 0;
@@ -32,6 +33,14 @@ public class NewGameUI : MonoBehaviour {
         if (counter > 0) {
             counter--;
             seedValues();
+        }
+    }
+
+    public void startButton() {
+        Debug.Log(heroes[counter].ToString());
+        if (heroes[counter] != null) {
+            gm.addHero(heroes[counter]);
+            // gm.saveGame();
         }
     }
 

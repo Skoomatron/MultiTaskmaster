@@ -20,4 +20,13 @@ public class Hero : MonoBehaviour
     [Header("Objectives")]
     [TextArea(10, 10)]
     public string goal;
+
+    public Hero(string heroName, Sprite sprite, Path path, Stats stats, Inventory inventory, string goal) {
+        this.heroName = heroName;
+        this.sprite = sprite;
+        this.path = path;
+        this.stats = stats;
+        this.inventory = inventory;
+        this.goal = goal;
+    }
 }
