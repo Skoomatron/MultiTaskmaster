@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -28,6 +29,21 @@ public class GameSaveManager : MonoBehaviour {
         Debug.Log(Application.persistentDataPath);
         if (!isSaveFile()) {
             Directory.CreateDirectory(Application.persistentDataPath + "/test_save");
+        }
+
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/test_save" + "/game_save.txt");
+        var json = JsonUtility.ToJson(data);
+        bf.Serialize(file, json);
+        file.Close();
+    }
+
+    public void loadGame() {
+        BinaryFormatter bf = new BinaryFormatter();
+        if (File.Exists(Application.persistentDataPath + "/test_save" + "/game_save.txt")) {
+            FileStream file = File.Open(Application.persistentDataPath + "/test_save/game_save.txt", FileMode.Open);
+            JsonUtility.FromJsonOverwrite((string)bf.Deserialize(file), data);
+            file.Close();
         }
     }
 

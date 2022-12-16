@@ -40,7 +40,7 @@ public class NewGameUI : MonoBehaviour {
         Debug.Log(heroes[counter].ToString());
         if (heroes[counter] != null) {
             gm.addHero(heroes[counter]);
-            // gm.saveGame();
+            gm.saveGame();
         }
     }
 
