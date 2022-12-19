@@ -9,8 +9,8 @@ using UnityEngine;
 
 public class GameSaveManager : MonoBehaviour {
     public static GameSaveManager instance;
-    public TextMeshProUGUI heroName;
-    public AllData data;
+    public AllData data = ScriptableObject.CreateInstance<AllData>();
+    
 
     private void Awake() {
         if (!instance) {
@@ -22,17 +22,18 @@ public class GameSaveManager : MonoBehaviour {
     }
 
     public bool isSaveFile() {
-        return Directory.Exists(Application.persistentDataPath + "/test_save");
+        return Directory.Exists(Application.persistentDataPath + "/game" + DateTime.Now + ".txt");
     }
 
-    public void saveGame() {
+    public void saveGame(string name) {
         Debug.Log(Application.persistentDataPath);
         if (!isSaveFile()) {
             Directory.CreateDirectory(Application.persistentDataPath + "/test_save");
         }
 
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/test_save" + "/game_save.txt");
+        data.saveFile = "/" + name + ".txt";
+        FileStream file = File.Create(Application.persistentDataPath + "/" + name + ".txt");
         var json = JsonUtility.ToJson(data);
         bf.Serialize(file, json);
         file.Close();

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Image = UnityEngine.UI.Image;
 
-public class NewGameUI : MonoBehaviour {
+public class NewGameScreen : MonoBehaviour {
     [SerializeField] private Hero[] heroes;
     [SerializeField] private TextMeshProUGUI name;
     [SerializeField] private TextMeshProUGUI description;
@@ -40,7 +40,7 @@ public class NewGameUI : MonoBehaviour {
         Debug.Log(heroes[counter].ToString());
         if (heroes[counter] != null) {
             gm.addHero(heroes[counter]);
-            gm.saveGame();
+            gm.saveGame(heroes[counter].heroName);
         }
     }
 
