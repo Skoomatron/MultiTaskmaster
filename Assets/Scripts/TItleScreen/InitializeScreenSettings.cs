@@ -5,8 +5,8 @@ using UnityEngine.UIElements;
 
 public class InitializeScreenSettings : MonoBehaviour {
     private Resolution rez;
-    public TextMeshProUGUI buttonText;
-    public AllData data;
+    public TextMeshProUGUI buttonText = null;
+    public AllData data = null;
     private void Awake() {
         if (data.heroes.Count != 0) {
             buttonText.SetText("Resume");
