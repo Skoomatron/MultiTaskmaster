@@ -13,6 +13,7 @@ public class Hero : MonoBehaviour
     [Header("Hero Identifiers")]
     public string heroName;
     public Sprite sprite;
+    public Sprite ship;
     public Path path;
     [Header("Scriptables")]
     public Stats stats;
