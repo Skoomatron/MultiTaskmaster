@@ -24,7 +24,6 @@ public class HeroMove : MonoBehaviour {
     }
 
     private void SetAnimatorFloats(Vector3 differential) {
-        Debug.Log(differential.ToString());
         animator.SetFloat("MoveX", differential.x);
         animator.SetFloat("MoveY", differential.y);
     }

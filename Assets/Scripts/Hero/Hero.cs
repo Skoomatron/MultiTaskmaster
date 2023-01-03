@@ -23,6 +23,8 @@ public class Hero : MonoBehaviour
     public string heroName;
     public Sprite sprite;
     public Sprite ship;
+    public RuntimeAnimatorController shipController;
+    public RuntimeAnimatorController heroController;
     public Path path;
     public Action action;
     
