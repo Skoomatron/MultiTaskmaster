@@ -7,6 +7,7 @@ public class Stats : ScriptableObject {
     public int health;
     public int attack;
     public int defense;
+    public int moveSpeed;
     public int wealth;
     public int experience;
     [Header("Accumulated Stats")]

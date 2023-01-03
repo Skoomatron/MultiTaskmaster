@@ -8,6 +8,15 @@ public enum Path {
     religious,
     curious,
 }
+
+public enum Action {
+    moving,
+    fighting,
+    resting,
+    shopping,
+    crafting,
+    governing,
+}
 public class Hero : MonoBehaviour
 {
     [Header("Hero Identifiers")]
@@ -15,12 +24,18 @@ public class Hero : MonoBehaviour
     public Sprite sprite;
     public Sprite ship;
     public Path path;
+    public Action action;
+    
     [Header("Scriptables")]
     public Stats stats;
     public Inventory inventory;
+    
     [Header("Objectives")]
     [TextArea(10, 10)]
     public string goal;
+
+    public GameObject currentLocation;
+    public GameObject destination = null;
 
     public Hero(string heroName, Sprite sprite, Path path, Stats stats, Inventory inventory, string goal) {
         this.heroName = heroName;
