@@ -5,6 +5,11 @@ public enum Activities {
     spend,
     kill,
     govern,
+    travel,
+    sail,
+    defeat,
+    find,
+    collect,
 }
 public enum Types {
     days,
@@ -20,7 +25,12 @@ public class Quest : ScriptableObject {
     public static Dictionary<Activities, string> ActivitiesString = new Dictionary<Activities, string>() {
         {Activities.govern, "Govern for "},
         {Activities.kill, "Kill "},
-        {Activities.spend, "Spend "}
+        {Activities.spend, "Spend "},
+        {Activities.travel , "Travel for "},
+        { Activities.sail, "Sail for "},
+        { Activities.defeat , "Defeat "},
+        { Activities.find, "Find the " },
+        { Activities.collect, "Collect " }
     };
 
     public static Dictionary<Types, string> TypesString = new Dictionary<Types, string>() {
