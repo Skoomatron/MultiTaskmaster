@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 132d8dbd05d5f445b97cda30200b7f44, type: 3}
+  m_Name: Hero1Inv
+  m_EditorClassIdentifier: 
+  tool: {fileID: 11400000, guid: 61218960e652a4c2795e1a4c5be3d407, type: 2}
+  garb: {fileID: 11400000, guid: acd3d520ab1bc42da8729a9c48f4ccde, type: 2}
+  trinket: {fileID: 11400000, guid: d61b372d4bee04435b0661fbd9c1c0f5, type: 2}
+  items: []

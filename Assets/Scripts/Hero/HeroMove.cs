@@ -13,14 +13,22 @@ public class HeroMove : MonoBehaviour {
     }
 
     private void MoveLocation() {
+        
         dm.FindNextDestination(hero);
-        hero.transform.position = Vector3.MoveTowards(
-            transform.position, 
-            hero.destination.transform.position, 
-            hero.stats.moveSpeed * Time.deltaTime);
-        Vector3 direction = (hero.transform.position - hero.destination.transform.position).normalized;
+        Vector3 heroPos = hero.transform.position;
+        Vector3 heroDest = hero.destination.transform.position;
+        
+        hero.transform.position = Vector3.MoveTowards(transform.position, heroDest, hero.stats.moveSpeed * Time.deltaTime);
+        
+        Vector3 direction = (heroPos - heroDest).normalized;
         SetAnimatorFloats(direction);
-        hero.action = Action.moving;
+        
+        if (heroPos == heroDest) {
+            hero.action = Action.fighting;
+        }
+        else {
+            hero.action = Action.moving;
+        }
     }
 
     private void SetAnimatorFloats(Vector3 differential) {

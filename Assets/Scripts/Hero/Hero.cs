@@ -31,20 +31,20 @@ public class Hero : MonoBehaviour
     [Header("Scriptables")]
     public Stats stats;
     public Inventory inventory;
-    
-    [Header("Objectives")]
-    [TextArea(10, 10)]
-    public string goal;
+
+    [Header("Objectives")] 
+    public Quest basicGoal;
+    public Quest intermediateGoal;
+    public Quest hardGoal;
 
     public GameObject currentLocation;
     public GameObject destination = null;
 
-    public Hero(string heroName, Sprite sprite, Path path, Stats stats, Inventory inventory, string goal) {
+    public Hero(string heroName, Sprite sprite, Path path, Stats stats, Inventory inventory) {
         this.heroName = heroName;
         this.sprite = sprite;
         this.path = path;
         this.stats = stats;
         this.inventory = inventory;
-        this.goal = goal;
     }
 }

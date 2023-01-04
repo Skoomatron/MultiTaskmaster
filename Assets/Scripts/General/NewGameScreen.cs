@@ -1,6 +1,8 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using UnityEngine.UIElements;
 using Image = UnityEngine.UI.Image;
 
 public class NewGameScreen : MonoBehaviour {
@@ -15,7 +17,7 @@ public class NewGameScreen : MonoBehaviour {
     [SerializeField] private Sprite noItem;
     [SerializeField] private GameSaveManager gm;
 
-
+    public Buttons buttons;
     private int counter = 0;
 
     private void Awake() {
@@ -42,11 +44,17 @@ public class NewGameScreen : MonoBehaviour {
             gm.addHero(heroes[counter]);
             gm.saveGame(heroes[counter].heroName);
         }
+
+        SceneManager.LoadScene("Game Screen");
+        // buttons.transferScene("Game Screen");
     }
 
     private void seedValues() {
         name.SetText(heroes[counter].heroName);
-        description.SetText(heroes[counter].goal);
+        string goals = heroes[counter].basicGoal.DescribeQuest(heroes[counter].basicGoal.activity, heroes[counter].basicGoal.type) + "\n" +
+                       heroes[counter].intermediateGoal.DescribeQuest(heroes[counter].intermediateGoal.activity, heroes[counter].intermediateGoal.type) + "\n" +
+                       heroes[counter].basicGoal.DescribeQuest(heroes[counter].hardGoal.activity, heroes[counter].hardGoal.type);
+        description.SetText(goals);
         playerSprite.sprite = heroes[counter].sprite;
 
         statsWindow.SetText("Health: " + heroes[counter].stats.health + "\n" +
