@@ -51,10 +51,13 @@ public class NewGameScreen : MonoBehaviour {
 
     private void seedValues() {
         name.SetText(heroes[counter].heroName);
-        string goals = heroes[counter].basicGoal.DescribeQuest(heroes[counter].basicGoal.activity, heroes[counter].basicGoal.type) + "\n" +
-                       heroes[counter].intermediateGoal.DescribeQuest(heroes[counter].intermediateGoal.activity, heroes[counter].intermediateGoal.type) + "\n" +
-                       heroes[counter].basicGoal.DescribeQuest(heroes[counter].hardGoal.activity, heroes[counter].hardGoal.type);
+        
+        string goals = heroes[counter].basicGoal.DescribeQuest(heroes[counter].basicGoal) + "\n" +
+                       heroes[counter].intermediateGoal.DescribeQuest(heroes[counter].intermediateGoal) + "\n" +
+                       heroes[counter].basicGoal.DescribeQuest(heroes[counter].hardGoal);
+        
         description.SetText(goals);
+        
         playerSprite.sprite = heroes[counter].sprite;
 
         statsWindow.SetText("Health: " + heroes[counter].stats.health + "\n" +

@@ -8,6 +8,7 @@ public class HeroMove : MonoBehaviour {
     public DestinationManager dm;
     public Hero hero;
     public Animator animator;
+    private double _travelTime = 0;
     private void Update() {
         MoveLocation();
     }
@@ -24,10 +25,13 @@ public class HeroMove : MonoBehaviour {
         SetAnimatorFloats(direction);
         
         if (heroPos == heroDest) {
+            hero.stats.timeTraveling += Math.Round(_travelTime);
+            _travelTime = 0;
             hero.action = Action.fighting;
         }
         else {
             hero.action = Action.moving;
+            _travelTime += Time.deltaTime;
         }
     }
 

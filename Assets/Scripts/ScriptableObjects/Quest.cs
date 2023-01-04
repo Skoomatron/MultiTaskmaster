@@ -11,39 +11,50 @@ public enum Activities {
     find,
     collect,
 }
-public enum Types {
+public enum Target {
     days,
     enemies,
+    ignore,
 }
 
 [CreateAssetMenu(fileName = "Quest", menuName = "ScriptableObjects/Quest", order = 1)]
 public class Quest : ScriptableObject {
     public Activities activity;
+    [Header("Not Explicitly Required - Default Null")]
     public float amount;
-    public Types type;
+    [Header("Must Be Set To IGNORE For Fetch Quests")]
+    public Target target;
+    [Header("Fetch Parameters - Default Null")]
+    public Item item = null;
+    public Tool tool = null;
+    public Garb garb = null;
+    public Trinket trinket = null;
+    public Monster monster = null;
 
     public static Dictionary<Activities, string> ActivitiesString = new Dictionary<Activities, string>() {
         {Activities.govern, "Govern for "},
         {Activities.kill, "Kill "},
         {Activities.spend, "Spend "},
         {Activities.travel , "Travel for "},
-        { Activities.sail, "Sail for "},
-        { Activities.defeat , "Defeat "},
-        { Activities.find, "Find the " },
-        { Activities.collect, "Collect " }
+        {Activities.sail, "Sail for "},
+        {Activities.defeat , "Defeat "},
+        {Activities.find, "Find the "},
+        {Activities.collect, "Collect "}
     };
 
-    public static Dictionary<Types, string> TypesString = new Dictionary<Types, string>() {
-        {Types.days, " days "},
-        {Types.enemies, " enemies."}
+    public static Dictionary<Target, string> TargetString = new Dictionary<Target, string>() {
+        {Target.days, " days."},
+        {Target.enemies, " enemies."}
     };
-
-    public string DescribeQuest(Activities activities, Types types) {
-        if (ActivitiesString.TryGetValue(activities, out string prefix) && TypesString.TryGetValue(types, out string target)) {
-            return prefix + amount + target;
+    public string DescribeQuest(Quest quest) {
+        if (quest.target == Target.ignore) {
+            if (ActivitiesString.TryGetValue(quest.activity, out string activityString) && quest.trinket) {
+                return activityString + quest.trinket.name + ".";
+            }
+        } 
+        else if (ActivitiesString.TryGetValue(quest.activity, out string activityString) && TargetString.TryGetValue(quest.target, out string targetString)) {
+            return activityString + amount + targetString;
         }
-        else {
-            return "Whoops";
-        }
+        return "Whoops";
     }
 }

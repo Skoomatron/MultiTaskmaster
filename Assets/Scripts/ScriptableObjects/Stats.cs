@@ -12,7 +12,7 @@ public class Stats : ScriptableObject {
     public int experience;
     [Header("Accumulated Stats")]
     public float accumulatedWealth;
-    public float timeAdventuring;
+    public double timeTraveling;
     public float timeGoverning;
     public int enemiesKilled;
     public int itemsCollected;
