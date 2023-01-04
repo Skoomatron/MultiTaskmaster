@@ -1,18 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DungeonManager : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public class DungeonManager : MonoBehaviour {
+    public GameObject[] monsters;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void OnTriggerEnter2D(Collider2D other) {
+        Debug.Log(other.name);
+        if (other.CompareTag("Character")) {
+            Debug.Log("Player Entered");
+            monsters[0].SetActive(true);
+        }
     }
 }

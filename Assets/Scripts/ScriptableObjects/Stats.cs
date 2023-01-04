@@ -14,12 +14,8 @@ public class Stats : ScriptableObject {
     public float accumulatedWealth;
     public double timeTraveling;
     public float timeGoverning;
-    public int enemiesKilled;
     public int itemsCollected;
-    public float timeResting;
-    public float timeCrafting;
-    public int regionsVisited;
-    public int townsVisited;
+    public int enemiesKilled;
     public int powerfulFoesDefeated;
 
     public int healthValue { get => health; set => health = value; }
