@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activity: 6
   amount: 0
-  target: 0
+  target: 2
   item: {fileID: 0}
   tool: {fileID: 0}
   garb: {fileID: 0}

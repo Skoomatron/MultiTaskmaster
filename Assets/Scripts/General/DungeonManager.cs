@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class DungeonManager : MonoBehaviour {
     public GameObject[] monsters;
+    public GameObject[] patrols;
 
     private void OnTriggerEnter2D(Collider2D other) {
         Debug.Log(other.name);
