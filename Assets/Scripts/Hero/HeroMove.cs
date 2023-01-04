@@ -5,9 +5,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class HeroMove : MonoBehaviour {
-    public DestinationManager dm;
     public Hero hero;
     public Animator animator;
+    public PathManager pm;
     private double _travelTime = 0;
     private void Update() {
         MoveLocation();
@@ -15,7 +15,6 @@ public class HeroMove : MonoBehaviour {
 
     private void MoveLocation() {
         
-        dm.FindNextDestination(hero);
         Vector3 heroPos = hero.transform.position;
         Vector3 heroDest = hero.destination.transform.position;
         
@@ -27,7 +26,11 @@ public class HeroMove : MonoBehaviour {
         if (heroPos == heroDest) {
             hero.stats.timeTraveling += Math.Round(_travelTime);
             _travelTime = 0;
-            hero.action = Action.fighting;
+            hero.currentLocation = hero.destination;
+            hero.destination = null;
+            if (hero.path == Path.explorer) {
+                pm.explorerManager.Explore(hero);
+            }
         }
         else {
             hero.action = Action.moving;
@@ -39,6 +42,4 @@ public class HeroMove : MonoBehaviour {
         animator.SetFloat("MoveX", differential.x);
         animator.SetFloat("MoveY", differential.y);
     }
-    
-    
 }

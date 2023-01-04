@@ -7,7 +7,7 @@ using Image = UnityEngine.UI.Image;
 
 public class NewGameScreen : MonoBehaviour {
     [SerializeField] private Hero[] heroes;
-    [SerializeField] private TextMeshProUGUI name;
+    [SerializeField] private TextMeshProUGUI heroName;
     [SerializeField] private TextMeshProUGUI description;
     [SerializeField] private TextMeshProUGUI statsWindow;
     [SerializeField] private Image playerSprite;
@@ -50,7 +50,7 @@ public class NewGameScreen : MonoBehaviour {
     }
 
     private void seedValues() {
-        name.SetText(heroes[counter].heroName);
+        heroName.SetText(heroes[counter].heroName);
         
         string goals = heroes[counter].basicGoal.DescribeQuest(heroes[counter].basicGoal) + "\n" +
                        heroes[counter].intermediateGoal.DescribeQuest(heroes[counter].intermediateGoal) + "\n" +

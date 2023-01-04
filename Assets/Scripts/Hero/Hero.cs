@@ -1,18 +1,16 @@
+using System;
 using UnityEngine;
 public enum Path {
-    mercantile,
+    merchant,
     soldier,
-    academic,
-    scoundrel,
-    politician,
-    religious,
-    curious,
+    explorer,
 }
 
 public enum Action {
     moving,
     fighting,
     resting,
+    exploring,
     shopping,
     crafting,
     governing,
@@ -21,12 +19,15 @@ public class Hero : MonoBehaviour
 {
     [Header("Hero Identifiers")]
     public string heroName;
-    public Sprite sprite;
-    public Sprite ship;
+    public Sprite sprite; // Used For New Game Screen Only
+    public Path path;
+    
+    [Header("Hero State")]
+    public Action action;
+    
+    [Header("Animation Controllers")] // Used For Land/Sea Travel Switch
     public RuntimeAnimatorController shipController;
     public RuntimeAnimatorController heroController;
-    public Path path;
-    public Action action;
     
     [Header("Scriptables")]
     public Stats stats;
@@ -36,9 +37,12 @@ public class Hero : MonoBehaviour
     public Quest basicGoal;
     public Quest intermediateGoal;
     public Quest hardGoal;
-
+    
+    [Header("Movement Parameters")]
     public GameObject currentLocation;
     public GameObject destination = null;
+
+    public PathManager pm;
 
     public Hero(string heroName, Sprite sprite, Path path, Stats stats, Inventory inventory) {
         this.heroName = heroName;
@@ -46,5 +50,17 @@ public class Hero : MonoBehaviour
         this.path = path;
         this.stats = stats;
         this.inventory = inventory;
+    }
+
+    private void Update() {
+        if (path == Path.soldier) {
+            pm.soldierManager.FindMonster(this);
+        } else if (path == Path.explorer) {
+            if (action == Action.resting) {
+                pm.explorerManager.FindExplorations(this);
+            } else if (action == Action.exploring) {
+                pm.explorerManager.FindTown(this);
+            }
+        }
     }
 }

@@ -14,6 +14,7 @@ public class Monster : MonoBehaviour {
     public int attack;
     public int defense;
     public int attackSpeed;
+    public Boolean targeted = false;
 
     private MonsterState _monsterState = MonsterState.idle;
 

@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DungeonManager : MonoBehaviour {
+
+    public int dungeonLevel;
+    public float explorationTime;
+    public int explorationExp;
+    
+    [Header("Monster Parameters")]
     public GameObject[] monsters;
     public GameObject[] patrols;
 
