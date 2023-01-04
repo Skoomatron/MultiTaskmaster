@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d3b2da4479224a059e34c5f5168eb9a, type: 3}
   m_Name: Hero1Stats
   m_EditorClassIdentifier: 
-  level: 2
+  level: 5
   health: 2
   attack: 2
   defense: 2
@@ -20,7 +20,7 @@ MonoBehaviour:
   wealth: 2
   experience: 2
   accumulatedWealth: 0
-  timeTraveling: 150
+  timeTraveling: 331
   timeGoverning: 0
   itemsCollected: 0
   enemiesKilled: 0
