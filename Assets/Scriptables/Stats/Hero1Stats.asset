@@ -16,11 +16,11 @@ MonoBehaviour:
   health: 2
   attack: 2
   defense: 2
-  moveSpeed: 1
+  moveSpeed: 3
   wealth: 2
-  experience: 2
+  experience: 70
   accumulatedWealth: 0
-  timeTraveling: 331
+  timeTraveling: 580
   timeGoverning: 0
   itemsCollected: 0
   enemiesKilled: 0

@@ -5,15 +5,19 @@ using UnityEngine;
 
 public class SoldierManager : MonoBehaviour {
     public GameObject[] towns;
+
+    public void SoldierActions(Hero hero) {
+        if (hero.action == Action.idle) {
+            FindExplorations(hero);
+        } else if (hero.action == Action.moving && dungeons.Contains(hero.currentLocation)) {
+            StartCoroutine(ExploreCo(hero));
+        } else if (hero.action == Action.exploring && dungeons.Contains(hero.currentLocation)) {
+            FindTown(hero);
+        } else if (hero.action == Action.moving && towns.Contains(hero.currentLocation)) {
+            StartCoroutine(RestCo(hero));
+        }
+    }
     public void FindMonster(Hero hero) {
-        // if (GameObject.FindWithTag("Enemy").activeInHierarchy) {
-        //     GameObject monster = GameObject.FindWithTag("Enemy");
-        //     Monster temp = monster.GetComponent<Monster>();
-        //     temp.targeted = true;
-        //     hero.destination = monster;
-        // }
-        // else {
-            hero.destination = towns[0];
-        // }
+        hero.destination = towns[0];
     }
 }

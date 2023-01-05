@@ -52,16 +52,4 @@ public class Hero : MonoBehaviour
         this.stats = stats;
         this.inventory = inventory;
     }
-
-    private void Update() {
-        if (path == Path.soldier) {
-            pm.soldierManager.FindMonster(this);
-        } else if (path == Path.explorer) {
-            if (action == Action.idle) {
-                pm.explorerManager.FindExplorations(this);
-            } else if (action == Action.resting) {
-                pm.explorerManager.FindTown(this);
-            }
-        }
-    }
 }

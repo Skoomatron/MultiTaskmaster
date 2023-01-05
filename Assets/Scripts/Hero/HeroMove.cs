@@ -27,6 +27,7 @@ public class HeroMove : MonoBehaviour {
             _travelTime += Time.deltaTime;
 
             if (hero.transform.position == hero.destination.transform.position) {
+                hero.stats.timeTraveling += Math.Round(_travelTime);
                 hero.currentLocation = hero.destination;
                 hero.destination = null;
             }
@@ -34,6 +35,8 @@ public class HeroMove : MonoBehaviour {
         else {
             if (hero.path == Path.explorer) {
                 pm.explorerManager.ExplorerActions(hero);
+            } else if (hero.path == Path.soldier) {
+                pm.soldierManager.SoldierActions(hero);
             }
         }
     }

@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 public class ExplorerManager : MonoBehaviour {
     public GameObject[] dungeons;
     public GameObject[] towns;
+    public DungeonManager currentDungeon = null;
 
     public void ExplorerActions(Hero hero) {
         if (hero.action == Action.idle) {
@@ -25,6 +26,7 @@ public class ExplorerManager : MonoBehaviour {
         DungeonManager dm = dungeons[index].GetComponent<DungeonManager>();
         if (hero.stats.level >= dm.dungeonLevel) {
             hero.destination = dungeons[index];
+            currentDungeon = dungeons[index].GetComponent<DungeonManager>();
         }
         else {
             FindExplorations(hero);
@@ -32,21 +34,21 @@ public class ExplorerManager : MonoBehaviour {
     }
 
     public void FindTown(Hero hero) {
+        AddExplorationExp(hero);
         hero.destination = towns[0];
     }
 
     private IEnumerator RestCo(Hero hero) {
-        hero.action = Action.resting;
         yield return new WaitForSeconds(2f);
         hero.action = Action.idle;
-        hero.destination = null;
     }
     
     private IEnumerator ExploreCo(Hero hero) {
+        yield return new WaitForSeconds(currentDungeon.explorationTime);
         hero.action = Action.exploring;
-        DungeonManager dm = hero.destination.GetComponent<DungeonManager>();
-        yield return new WaitForSeconds(dm.explorationTime);
-        hero.stats.experience += dm.explorationExp;
-        hero.destination = null;
+    }
+
+    private void AddExplorationExp(Hero hero) {
+        hero.stats.experience += currentDungeon.explorationExp;
     }
 }
