@@ -14,27 +14,27 @@ public class HeroMove : MonoBehaviour {
     }
 
     private void MoveLocation() {
-        
-        Vector3 heroPos = hero.transform.position;
-        Vector3 heroDest = hero.destination.transform.position;
-        
-        hero.transform.position = Vector3.MoveTowards(transform.position, heroDest, hero.stats.moveSpeed * Time.deltaTime);
-        
-        Vector3 direction = (heroPos - heroDest).normalized;
-        SetAnimatorFloats(direction);
-        
-        if (heroPos == heroDest) {
-            hero.stats.timeTraveling += Math.Round(_travelTime);
-            _travelTime = 0;
-            hero.currentLocation = hero.destination;
-            hero.destination = null;
-            if (hero.path == Path.explorer) {
-                pm.explorerManager.Explore(hero);
+        if (hero.destination) {
+            Vector3 heroPos = hero.transform.position;
+            Vector3 heroDest = hero.destination.transform.position;
+            
+            hero.transform.position = Vector3.MoveTowards(transform.position, heroDest, hero.stats.moveSpeed * Time.deltaTime);
+            
+            Vector3 direction = (heroPos - heroDest).normalized;
+            SetAnimatorFloats(direction);
+            
+            hero.action = Action.moving;
+            _travelTime += Time.deltaTime;
+
+            if (hero.transform.position == hero.destination.transform.position) {
+                hero.currentLocation = hero.destination;
+                hero.destination = null;
             }
         }
         else {
-            hero.action = Action.moving;
-            _travelTime += Time.deltaTime;
+            if (hero.path == Path.explorer) {
+                pm.explorerManager.ExplorerActions(hero);
+            }
         }
     }
 

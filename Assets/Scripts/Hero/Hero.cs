@@ -7,6 +7,7 @@ public enum Path {
 }
 
 public enum Action {
+    idle,
     moving,
     fighting,
     resting,
@@ -23,7 +24,7 @@ public class Hero : MonoBehaviour
     public Path path;
     
     [Header("Hero State")]
-    public Action action;
+    public Action action = Action.idle;
     
     [Header("Animation Controllers")] // Used For Land/Sea Travel Switch
     public RuntimeAnimatorController shipController;
@@ -56,9 +57,9 @@ public class Hero : MonoBehaviour
         if (path == Path.soldier) {
             pm.soldierManager.FindMonster(this);
         } else if (path == Path.explorer) {
-            if (action == Action.resting) {
+            if (action == Action.idle) {
                 pm.explorerManager.FindExplorations(this);
-            } else if (action == Action.exploring) {
+            } else if (action == Action.resting) {
                 pm.explorerManager.FindTown(this);
             }
         }
