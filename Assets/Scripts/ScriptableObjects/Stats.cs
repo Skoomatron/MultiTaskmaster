@@ -11,6 +11,10 @@ public class Stats : ScriptableObject {
     public int attackSpeed;
     public int wealth;
     public int experience;
+
+    [Header("Derived Stats")] 
+    public int currentHealth;
+    
     [Header("Accumulated Stats")]
     public float accumulatedWealth;
     public double timeTraveling;
@@ -18,6 +22,4 @@ public class Stats : ScriptableObject {
     public int itemsCollected;
     public int enemiesKilled;
     public int powerfulFoesDefeated;
-
-    public int healthValue { get => health; set => health = value; }
 }

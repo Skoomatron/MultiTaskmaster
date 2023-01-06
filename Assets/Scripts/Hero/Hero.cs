@@ -14,6 +14,7 @@ public enum Action {
     fighting,
     resting,
     exploring,
+    exhuasted,
     shopping,
     crafting,
     governing,

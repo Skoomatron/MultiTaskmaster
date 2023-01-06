@@ -6,7 +6,7 @@ using UnityEngine;
 public enum MonsterState {
     moving,
     idle,
-    attacking,
+    fighting,
 }
 public class Monster : MonoBehaviour {
     public int level;
@@ -30,11 +30,10 @@ public class Monster : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.CompareTag("Character"))
-        {
-            Debug.Log("A Hero Has Approached");
-            _monsterState = MonsterState.attacking;
+        if (other.CompareTag("Character")) {
+            _monsterState = MonsterState.fighting;
             Hero hero = other.GetComponent<Hero>();
+            hero.action = Action.fighting;
             StartCoroutine(MonsterAttackCo(hero));
         }
     }
@@ -57,6 +56,17 @@ public class Monster : MonoBehaviour {
     }
 
     private IEnumerator MonsterAttackCo(Hero hero) {
+        int damage = attack - hero.stats.defense;
+        if (damage < 0) {
+            damage = 0;
+        }
+        hero.stats.currentHealth -= damage;
         yield return new WaitForSeconds(attackSpeed);
+        if (hero.stats.currentHealth <= 0) {
+            hero.action = Action.exhuasted;
+        }
+        else {
+            StartCoroutine(MonsterAttackCo(hero));
+        }
     }
 }
