@@ -14,11 +14,11 @@ public class ExplorerManager : MonoBehaviour {
     public void ExplorerActions(Hero hero) {
         if (hero.action == Action.idle) {
             FindExplorations(hero);
-        } else if (hero.action == Action.moving && dm.dungeons.Contains(hero.currentLocation)) {
+        } else if (hero.action == Action.moving && dm.dungeons.Contains(hero.targetGameObject)) {
             StartCoroutine(ExploreCo(hero));
-        } else if (hero.action == Action.exploring && dm.dungeons.Contains(hero.currentLocation)) {
+        } else if (hero.action == Action.exploring && dm.dungeons.Contains(hero.targetGameObject)) {
             FindTown(hero);
-        } else if (hero.action == Action.moving && dm.towns.Contains(hero.currentLocation)) {
+        } else if (hero.action == Action.moving && dm.towns.Contains(hero.targetGameObject)) {
             StartCoroutine(RestCo(hero));
         }
     }

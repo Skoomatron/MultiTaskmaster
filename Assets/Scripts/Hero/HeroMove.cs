@@ -28,7 +28,7 @@ public class HeroMove : MonoBehaviour {
 
             if (hero.transform.position == hero.destination.transform.position) {
                 hero.stats.timeTraveling += Math.Round(_travelTime);
-                hero.currentLocation = hero.destination;
+                hero.targetGameObject = hero.destination;
                 hero.destination = null;
             }
         }

@@ -24,7 +24,19 @@ public class Monster : MonoBehaviour {
     public DungeonManager dm;
 
     private void Update() {
-        MonsterMove();
+        if (_monsterState == MonsterState.idle || _monsterState == MonsterState.moving) {
+            MonsterMove();
+        } 
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("Character"))
+        {
+            Debug.Log("A Hero Has Approached");
+            _monsterState = MonsterState.attacking;
+            Hero hero = other.GetComponent<Hero>();
+            StartCoroutine(MonsterAttackCo(hero));
+        }
     }
 
     private void MonsterMove() {
@@ -42,5 +54,9 @@ public class Monster : MonoBehaviour {
                 _pointCounter = 0;
             }
         }
+    }
+
+    private IEnumerator MonsterAttackCo(Hero hero) {
+        yield return new WaitForSeconds(attackSpeed);
     }
 }

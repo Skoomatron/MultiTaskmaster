@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
+
 public enum Path {
     merchant,
     soldier,
@@ -39,8 +41,8 @@ public class Hero : MonoBehaviour
     public Quest intermediateGoal;
     public Quest hardGoal;
     
-    [Header("Movement Parameters")]
-    public GameObject currentLocation;
+    [FormerlySerializedAs("currentLocation")] [Header("Movement Parameters")]
+    public GameObject targetGameObject; // used for movement and combat targeting
     public GameObject destination = null;
 
     public PathManager pm;
